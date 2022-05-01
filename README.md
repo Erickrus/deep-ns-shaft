@@ -1,5 +1,5 @@
 # DEEP-NS-SHAFT
-This is an imitation of the [NS-SHAFT](https://en.wikipedia.org/wiki/NS-Shaft) game, which also named as "是男人就下一百层" or "小朋友下楼梯". It is slightly modified, so as to import a tfjs neural network, so that the game will be able to generate floors based on the layers.
+This is an imitation of the [NS-SHAFT](https://en.wikipedia.org/wiki/NS-Shaft) game, which also named as "是男人就下一百层" or "小朋友下楼梯". It is slightly modified, so as to import a tfjs neural network using [tfjs_model_visualizer](https://github.com/Erickrus/tfjs_model_visualizer), so that the game will be able to generate floors based on the layers.
 
 You can download the repo and play it, have fun!
 
