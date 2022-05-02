@@ -596,10 +596,10 @@
 			texts = texts[texts.length-1].split("(");
 			
 
-            postion = f["rect"][1]*4;
+            postion = f["rect"][1]*3.5;
 			lastY = f["rect"][1];
 
-			var width = texts[0].length * 8;
+			var width = texts[0].length;// * 8;
 			
 			var floorY = postion;
 			
