@@ -19,6 +19,7 @@
 <script src="deep_floor.js"></script>
 </head>
 <body>
+
 	<div id="content">Loading...</div>
 	<dl>
 		<dt>How to play</dt>
@@ -28,6 +29,11 @@
 		<dd><strong>life</strong>: hitting spikes on the top or on a floor reduces the player's life, landing on a floor (without spikes) increases the player's life</dd>
 		<dd><strong>game over</strong>: falling off the bottom or running out of life <img src="https://static.fouryes.com/smile.gif" /></dd>
 	</dl>
+	<div style="visibility:hidden">
+		<audio id="bgm" controls autoplay loop=-1>
+	    	<source src="bgm.mp3" type="audio/mpeg">
+    	</audio>
+	</div>
 	<script>
 	window.onerror = function (msg, url, lineNo, columnNo, error) {
 		var node = document.body;
@@ -110,6 +116,7 @@
 			trackEvent('score', score);
 		});
 	}();
+
 	</script>
 </body>
 </html>

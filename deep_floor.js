@@ -1,5 +1,5 @@
 var deepFloors = [
-        {'rect': [311.0, 1077.0, 278.0, 1084.0], 'text': 'Identity_1 [1,266] (Identity)', 'color': '#a4d3ee'} ,
+{'rect': [311.0, 1077.0, 278.0, 1084.0], 'text': 'Identity_1 [1,266] (Identity)', 'color': '#a4d3ee'} ,
 {'rect': [57.0, 1077.0, 25.0, 1084.0], 'text': 'Identity [1,1404] (Identity)', 'color': '#a4d3ee'} ,
 {'rect': [319.0, 1064.0, 270.0, 1070.0], 'text': 'model/output_contours/Reshape (Reshape)', 'color': '#d1eeee'} ,
 {'rect': [64.0, 1064.0, 18.0, 1070.0], 'text': 'model/output_mesh/Reshape (Reshape)', 'color': '#d1eeee'} ,
@@ -119,3 +119,4 @@ var deepFloors = [
 {'rect': [176.0, 16.0, 98.0, 23.0], 'text': 'model/batch_normalization_v1/FusedBatchNormV3 (_FusedConv2D)', 'color': '#54ff9f'} ,
 {'rect': [157.0, 2.0, 116.0, 9.0], 'text': 'input_1 [1,192,192,3] (Placeholder)', 'color': '#a4d3ee'} ,
         ];
+var currDeepFloors = [];

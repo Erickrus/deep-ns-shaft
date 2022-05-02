@@ -150,6 +150,8 @@
 	var topBarChange = false;
 	// var timeCoefficient = 1, timeModifier = 0;
 
+	var gameCompleteText = "Game Over";
+
 	var FloorSeq = function() {
 		var _seq = 0;
 		var _running = false;
@@ -198,9 +200,9 @@
 			*/
 			
 			this.width = context.measureText(this.text)["width"];
+			this.width = FLOOR_WIDTH;
             
 			context.fillStyle = this.color;
-			//console.log(this.text,context.measureText(this.text)["width"]);
 			//context.fillRect(0, 0, this.width, -FLOOR_HEIGHT);
 			context.fillRect(0, 0, this.width, -FLOOR_HEIGHT);
 			//console.log(context.measureText(this.text));
@@ -216,6 +218,9 @@
 			hero.vy = floorVelocity;
 			hero.regain();
 			updateScore(this.seq);
+			if (this.last) {
+				gameCompleteText = "Finished !";
+			}
 		},
 		standing : function(hero, time) {
 		},
@@ -578,26 +583,26 @@
 	 * action
 	 */
 	function generateFloor() {
-
-        
-		var colors = ["#54ff9f","#ffefd5","#ffefd5","#eee9e9"];
-		var lastY = 0.
+		//var colors = ["#54ff9f","#ffefd5","#ffefd5","#eee9e9"];
+		//var lastY = 0.
 		var firstInit = floorArray.length == 0;
 		var floor = floorArray[floorArray.length - 1];
 		var postion = floor && floor.y || 0;
 		//while (postion < STAGE_HEIGHT) {
-		while (deepFloors.length>0) {
+		while (currDeepFloors.length>0) {
 
 			//postion += FLOOR_DISTANCE;
-
-
-            var f = deepFloors.pop();
+            var f = currDeepFloors.pop();
+            var lastFloorInd = false;
+            if (f["text"].indexOf("Identity") >=0) {
+            	lastFloorInd = true;
+            }
             var texts = f["text"].split("/");
 			texts = texts[texts.length-1].split("(");
 			
 
             postion = f["rect"][1]*3.5;
-			lastY = f["rect"][1];
+			//lastY = f["rect"][1];
 
 			var width = texts[0].length;// * 8;
 			
@@ -616,6 +621,7 @@
 					newFloor = new Floor(floorX, floorY);
 					newFloor.color = f["color"];
 					newFloor.width = width;
+					newFloor.last = lastFloorInd;
 					
 					newFloor.text = texts[0].trim();
 					//console.log(newFloor);
@@ -629,6 +635,8 @@
 
 			newFloor.color = f["color"];
             newFloor.width = width;
+            newFloor.last = lastFloorInd;
+
 			newFloor.text = texts[0].trim();
 
 			floorArray.push(newFloor);
@@ -702,7 +710,7 @@
 	}
 
 	function judge() {
-		if (hero == null || hero.y > STAGE_HEIGHT + hero.height || hero.life <= 0) {
+		if (hero == null || hero.y > STAGE_HEIGHT + hero.height || hero.life <= 0 || gameCompleteText == "Finished !") {
 			return true;
 		}
 		return false;
@@ -750,9 +758,10 @@
 				context.font = 'bold 32pt monospace';
 				context.strokeStyle = '#fff';
 				context.lineWidth = 6;
-				context.strokeText('Game Over', 0, 10);
+				
+				context.strokeText(gameCompleteText, 0, 10);
 				context.fillStyle = '#000';
-				context.fillText('Game Over', 0, 10);
+				context.fillText(gameCompleteText, 0, 10);
 			} else {
 				if (!isFinite(spacePressed)) {
 					context.beginPath();
@@ -921,6 +930,7 @@
 
 		//regist control
 		window.addEventListener('keydown', function(e) {
+			document.getElementById("bgm").play();
 			if (e.keyCode == 37) { // left
 				leftPressed = 0;
 				hero.turnLeft();
@@ -1037,6 +1047,10 @@
 			//create world
 			FloorSeq.reset();
 			floorArray = [];
+			currDeepFloors = [];
+			for (var i=0;i<deepFloors.length;i++) {
+				currDeepFloors.push(deepFloors[i]);
+			}
 			hero = new Hero((STAGE_WIDTH - HERO_WIDTH) * 0.5, STAGE_HEIGHT - FLOOR_DISTANCE);
 			floorVelocity = FLOOR_VELOCITY_BASE;
 			score = 0;
@@ -1046,6 +1060,7 @@
 		window.removeEventListener('touchmove', onMove, false);
 		isRunning = true;
 		lastTime = 0;
+		gameCompleteText = "Game Over";
 		$canvas.scrollIntoView();
 		requestAnimationFrame(frame);
 	}
