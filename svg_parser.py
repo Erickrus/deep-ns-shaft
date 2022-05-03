@@ -1,8 +1,11 @@
-import xml.etree.ElementTree as ET
-import sys
+# -*- coding: utf-8 -*-
 
-def parse(svgFilename):
-  svgTree = ET.parse(svgFilename)
+import json
+import sys
+import xml.etree.ElementTree as ET
+
+def parse(xmlString):
+  svgTree = ET.ElementTree(ET.fromstring(xmlString))
   svgRoot = svgTree.getroot()
 
   width = float(svgRoot.attrib['width'].replace('pt',''))
@@ -19,7 +22,7 @@ def parse(svgFilename):
   }
 
   floors = []
-  for i in range(2,len(svgRoot[0])):
+  for i in range(2, len(svgRoot[0])): # skip the first 2 nodes
     node = svgRoot[0][i]
     if node.attrib['class'] == 'node':
         polygonElm = node[1]
@@ -37,10 +40,27 @@ def parse(svgFilename):
             color = namedColors[color]
         
         floors.append({"rect":rect, "text":text, "color":color})
+
+  # as in the application use pop() to retrieve the data
+  # reverse the order here
   floors = list(reversed(floors))
-  for i in range(len(floors)):
-    print(floors[i], ",")
+
+  # generate and output deep_floor.js
+  result = "var deepFloors = \n"+json.dumps(floors, indent=2)+";\n"
+  result += "\nvar currDeepFloors = [];\n"
+  print(result)
+
+
 if __name__ == "__main__":
-    parse(sys.argv[1])
+    # take stdin or take svg filename from command line
+    # directly output result to stdout
+    lines = ""
+    if len(sys.argv) == 1:
+        for line in sys.stdin:
+            lines += line + "\n"
+    else:
+        with open(sys.argv[1], "r") as f:
+            lines = f.read()
+    parse(lines)
 
 
