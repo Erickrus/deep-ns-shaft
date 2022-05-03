@@ -7,6 +7,20 @@ You can download the repo and play it, have fun!
 [![deep-ns-shaft screenshot](https://github.com/Erickrus/deep-ns-shaft/blob/master/facemesh.png?raw=true)](https://twitter.com/hyinghao_t/status/1521182965359083521 "Demo Video")
 
 
+## Generate Deep Floors
+* **Dependencies** 
+  - Assume: `node`, `graphviz` and `python3` have already been installed, and you also need download this repo [tfjs_model_visualizer](https://github.com/Erickrus/tfjs_model_visualizer) where you can get `model_visualizer.ts`. 
+ 
+* **Command** 
+  - Type following line in console. Note, model.json could only take relative path (e.g. facemesh/model.json ), dont try to put any absolute path.
+  - ```shell
+    node model_visualizer.ts model.json | dot -Tsvg | python3 svg_parser.py > deep_floor.js
+    ```
+
+
+* **Copy** 
+  - Then, copy/move deep_floor.js (newly generated) under deep-ns-shaft folder (replacing the previous one), and now you're ready. 
+
 ## How to play
 * **go left**: press the left half of the screen (for touch screen device), or press the <kbd>&larr;</kbd> key (for keyboard or joystick)
 
