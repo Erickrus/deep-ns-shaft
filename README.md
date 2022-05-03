@@ -24,7 +24,8 @@ You can download the repo and play it, have fun!
 
 
 * **Copy** 
-  - Then, copy/move deep_floor.js (newly generated) under deep-ns-shaft folder (replacing the previous one), and now you're ready. 
+  - Then, copy/move `deep_floor.js` (newly generated) into deep-ns-shaft folder (replace the previous one), and now you're ready. 
+  - There're some generated deep_floor.js files in the `floors` folder, you can pick and replace with the current `deep_floor.js`.
 
 ## How to play
 * **go left**: press the left half of the screen (for touch screen device), or press the <kbd>&larr;</kbd> key (for keyboard or joystick)
