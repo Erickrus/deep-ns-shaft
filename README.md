@@ -1,7 +1,12 @@
 # DEEP-NS-SHAFT
-This is an imitation of the [NS-SHAFT](https://en.wikipedia.org/wiki/NS-Shaft) game, which also named as "是男人就下一百层" or "小朋友下楼梯". It is slightly modified, so as to import a tfjs neural network using [tfjs_model_visualizer](https://github.com/Erickrus/tfjs_model_visualizer), so that the game will be able to generate floors based on the layers.
+This is an imitation of the [NS-SHAFT](https://en.wikipedia.org/wiki/NS-Shaft) game, which also named as "是男人就下一百层" or "小朋友下楼梯". 
+
+It is slightly **modified**, and it is able to import a tfjs neural network using [tfjs_model_visualizer](https://github.com/Erickrus/tfjs_model_visualizer). In this way, the game will be able to generate floors based on the layers in the neural network definition.
 
 You can download the repo and play it, have fun!
+
+![deep-ns-shaft icon](https://github.com/Erickrus/deep-ns-shaft/blob/master/icon.png?raw=true)
+
 
 ## Screenshot
 [![deep-ns-shaft screenshot](https://github.com/Erickrus/deep-ns-shaft/blob/master/facemesh.png?raw=true)](https://twitter.com/hyinghao_t/status/1521182965359083521 "Demo Video")
@@ -31,3 +36,5 @@ You can download the repo and play it, have fun!
 * **life**: hitting spikes on the top or on a floor reduces the player's life, landing on a floor (without spikes) increases the player's life
 
 * **game over**: falling off the bottom or running out of life
+
+* **finished**: landing on the final `Identity` layer(s) or floor(s)
