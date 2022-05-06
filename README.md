@@ -9,6 +9,8 @@ You can download the repo and play it, have fun!
 
 
 ## Screenshot
+![](https://github.com/Erickrus/deep-ns-shaft/blob/master/deep-ns-shaft.gif?raw=true)
+
 [![deep-ns-shaft screenshot](https://github.com/Erickrus/deep-ns-shaft/blob/master/facemesh.png?raw=true)](https://twitter.com/hyinghao_t/status/1521182965359083521 "Demo Video")
 
 
